@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.OutMapper">
+    <select id="findPage" resultType="com.lm.flowershop.entity.Outstorage">
+        select fl_out.*, fl_product.name as proname,fl_product.pro_stock as prostock,fl_product.pro_sales as prosales  from fl_out
+        left join fl_product
+        on fl_out.out_Name = fl_product.id
+        <where>
+            <if test="outId != null and outId != ''">
+                and out_Id like concat('%', #{outId},'%')
+            </if>
+            <if test="outOper != null and outOper != ''">
+                and out_Oper like concat('%', #{outOper},'%')
+            </if>
+            <if test="outCustomer != null and outCustomer != ''">
+                and out_Customer like concat('%', #{outCustomer},'%')
+            </if>
+            <if test="startTime!=null and startTime.trim() neq ''">
+                and out_Date  &gt;= date_format(#{startTime},'%Y-%m-%d')
+            </if>
+            <if test="endTime!=null and endTime.trim() neq ''">
+                and out_Date &lt;= date_format(#{endTime},'%Y-%m-%d')
+            </if>
+        </where>
+    </select>
+    <select id="findPage1" resultType="com.lm.flowershop.entity.Outstorage">
+        select * from fl_out
+        <where>
+            <if test="startTime!=null and startTime.trim() neq ''">
+                and out_Date  &gt;= date_format(#{startTime},'%Y-%m-%d')
+            </if>
+            <if test="endTime!=null and endTime.trim() neq ''">
+                and out_Date &lt;= date_format(#{endTime},'%Y-%m-%d')
+            </if>
+        </where>
+    </select>
+    <select id="sumByToday"  resultType="java.lang.Double">
+    select sum(out_Total) as sumByToday  from fl_out
+        <where>
+            status = '已出库'
+        </where>
+    </select>
+    <select id="sumByPaid"  resultType="java.lang.Double">
+    select sum(out_Paid) as sumByPaid  from fl_out
+        <where>
+            status = '已出库'
+        </where>
+    </select>
+    <select id="totalsale" parameterType="String" resultType="Integer">
+        select count(*) from  fl_out
+        <where>
+            status = '已出库'
+        </where>
+    </select>
+</mapper>

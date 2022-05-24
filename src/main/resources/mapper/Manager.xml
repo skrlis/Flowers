@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.ManagerMapper">
+    <update id="update">
+        <set>
+            <if test="adname != null">
+                adname = #{adname},
+            </if>
+            <if test="adpwd != null">
+                adpwd = #{adpwd},
+            </if>
+            <if test="adisused != null">
+                adisused = #{adisused}
+            </if>
+        </set>
+       <where>
+           adid = #{adid}
+       </where>
+    </update>
+
+        <select id="findPage" resultType="com.lm.flowershop.entity.Manager">
+            select * from fl_admin
+            <where>
+                     role = 'ROLE_BUYER'
+            </where>
+        </select>
+
+    <select id="findPage1" resultType="com.lm.flowershop.entity.Manager">
+        select * from fl_admin
+        <where>
+            role = 'ROLE_ADMIN'
+        </where>
+    </select>
+
+    <select id="findPage2" resultType="com.lm.flowershop.entity.Manager">
+        select * from fl_admin
+        <where>
+            role = 'ROLE_SALER'
+        </where>
+    </select>
+</mapper>

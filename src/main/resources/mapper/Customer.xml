@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.CustomerMapper">
+    <select id="userNameValidate" parameterType="String" resultType="Integer">
+         select count(*) from  fl_customer
+        <where>
+            cus_sort = '零售'
+        </where>
+    </select>
+    <select id="salerValidate" parameterType="String" resultType="Integer">
+        select count(*) from  fl_customer
+        <where>
+            cus_sort = '批发'
+        </where>
+    </select>
+</mapper>

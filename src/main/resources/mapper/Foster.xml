@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.FosterMapper">
+    <select id="findPage" resultType="com.lm.flowershop.entity.Foster">
+        select *  from fl_foster
+        <where>
+            <if test="phone != null and phone != ''">
+                and phone like concat('%', #{phone},'%')
+            </if>
+            <if test="fosName != null and fosName != ''">
+                and fos_Name like concat('%', #{fosName},'%')
+            </if>
+            <if test="startTime!=null and startTime.trim() neq ''">
+                and fos_Starttime  &gt;= date_format(#{startTime},'%Y-%m-%d')
+            </if>
+            <if test="fosOper != null and fosOper != ''">
+                and fos_Oper like concat('%', #{fosOper},'%')
+            </if>
+            <if test="fosStatus != null and fosStatus != ''">
+                and fos_Status like concat('%', #{fosStatus},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

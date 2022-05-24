@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.SaleMapper">
+    <select id="findPage" resultType="com.lm.flowershop.entity.Sale">
+        select fl_sale.*, fl_product.name as proname  from fl_sale
+        left join fl_product
+        on fl_sale.sale_Name = fl_product.id
+        <where>
+            <if test="saleId != null and saleId != ''">
+                and saleId like concat('%', #{saleId},'%')
+            </if>
+        </where>
+    </select>
+    <select id="findPage1" resultType="com.lm.flowershop.entity.Sale">
+        select fl_sale.*, fl_product.name as proname  from fl_sale
+        left join fl_product
+        on fl_sale.sale_Name = fl_product.id
+        <where>
+            <if test="saleId != null and saleId != ''">
+                and sale_Id like concat('%', #{saleId},'%')
+            </if>
+            <if test="saler != null and saler != ''">
+                and saler like concat('%', #{saler},'%')
+            </if>
+            <if test="reviewer != null and reviewer != ''">
+                and reviewer like concat('%', #{reviewer},'%')
+            </if>
+            <if test="results != null and results != ''">
+                and results like concat('%', #{results},'%')
+            </if>
+            <if test="startTime!=null and startTime.trim() neq ''">
+                and sale_date  &gt;= date_format(#{startTime},'%Y-%m-%d')
+            </if>
+            <if test="endTime!=null and endTime.trim() neq ''">
+                and sale_date &lt;= date_format(#{endTime},'%Y-%m-%d')
+            </if>
+        </where>
+    </select>
+    <select id="findPage2" resultType="com.lm.flowershop.entity.Sale">
+        select fl_sale.*, fl_product.name as proname  from fl_sale
+        left join fl_product
+        on fl_sale.sale_Name = fl_product.id
+        <where>
+            results = '已通过'
+        </where>
+    </select>
+</mapper>

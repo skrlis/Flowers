@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.SortMapper">
+    <resultMap id="pageSort" type="com.lm.flowershop.entity.Sort">
+        <result column="id" property="id"/>
+        <result column="sortname" property="sortname"/>
+        <collection property="products" javaType="java.util.ArrayList" ofType="com.lm.flowershop.entity.Product">
+            <result column="name" property="name"/>
+            <result column="pro_from" property="proFrom"/>
+            <result column="pro_sales" property="proSales"/>
+        </collection>
+    </resultMap>
+
+    <select id="findPage" resultMap="pageSort">
+        select fl_sort.*,fl_product.* from fl_sort
+        left join fl_product
+        on fl_sort.id = fl_product.psort
+        <where>
+            <if test="sortname != null and sortname != ''">
+                and sortname like concat('%', #{sortname},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findPage1" resultMap="pageSort">
+        select fl_sort.*,fl_product.* from fl_sort
+        left join fl_product
+        on fl_sort.id = fl_product.psort
+    </select>
+
+</mapper>

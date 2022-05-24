@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lm.flowershop.mapper.ProductMapper">
+    <select id="findPage" resultType="com.lm.flowershop.entity.Product">
+        select fl_product.*, fl_sort.sortname as sort  from fl_product
+        left join fl_sort
+        on fl_product.psort = fl_sort.id
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name},'%')
+            </if>
+            <if test="psort != null and psort != ''">
+                and psort like concat('%', #{psort},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
