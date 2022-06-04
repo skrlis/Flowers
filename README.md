@@ -1,6 +1,21 @@
 ## 开源项目
 毕设：基于SpringBoot+vue的在线花店后台管理系统
 
+## 前端
+* Vue,Vuex,Vue Router
+* Axios
+* Element-ui
+* Echarts
+
+## 后端
+* Java
+* SpringBoot
+* Mybatis
+* Mybatis-Plus
+* jdk8
+* maven
+* mysql
+
 ## 内置功能
 1. 用户登录：不同用户登录后进入对应身份的后台管理界面（本系统用户为管理员、采购员、销售员）。
 2. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
@@ -21,3 +36,10 @@
 17. 数据分析：统计所有经营数据，包括各季度客户数量统计及热销花卉排行等。
 
 ## 演示图
+![image](https://user-images.githubusercontent.com/97578747/171969374-52483702-1c88-4a56-aa0c-4e7a2306551e.png)
+![image](https://user-images.githubusercontent.com/97578747/171969396-b28cfa96-20c5-400f-8c90-b6f2ce01685d.png)
+![image](https://user-images.githubusercontent.com/97578747/171969410-7660dbc6-b03e-4a0b-95ec-34bdee60a562.png)
+![image](https://user-images.githubusercontent.com/97578747/171969438-abac1450-0afe-43c7-a97f-454e6e77dc06.png)
+![image](https://user-images.githubusercontent.com/97578747/171969457-93c50810-3f35-4939-b2a6-a6361b4217d0.png)
+![image](https://user-images.githubusercontent.com/97578747/171969477-23a607e6-1a4e-4318-90f3-6e703c582b18.png)
+![image](https://user-images.githubusercontent.com/97578747/171969487-43a5b9bd-30c6-4689-abb8-f39793340c0a.png)
